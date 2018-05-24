@@ -7,12 +7,14 @@
 <body>
   <script src="oauth.js"></script>
   <script>
+    $(document).ready(function(){
   $(".sign-in").click(function(){
 OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
 OAuth.popup('spotify').done(function(result) {
     console.log(result)
     // do some stuff with result
     console.log('Positive or Negative?', result)
+});
 });
 });
 </script>
