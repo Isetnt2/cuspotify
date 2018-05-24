@@ -18,7 +18,7 @@ OAuth.popup('spotify').done(function(result) {
 </script>
   <script>
 window.onSpotifyWebPlaybackSDKReady = () => {
-    $("button").click(function(){
+    $(".connect").click(function(){
   const token = 'BQD8NEPQTaCOPm9EXp8pcMeO5kMdtbfjfWU3dHczuDyxdLO7ZWZqyaJm4-78AiYXx--ixJblia4Y6da4g93w4o_iHu0AAnky_ARlxjHD2ZgKix0OXqwVsGoMaMUQLueGno8-1iATAqiOBUHHyKfnbUUZcX4G0Bke2CTaI0Q';
   const player = new Spotify.Player({
     name: 'Isak spotify test',
@@ -74,7 +74,7 @@ player.connect().then(success => {
 
   <script src="https://sdk.scdn.co/spotify-player.js"></script> 
   <!-- We will insert our code here. -->
-  <button id="connect">Start Spotify Connect</button>
+  <button class="connect">Start Spotify Connect</button>
   <button class="pause">Play/Pause</button>
   <button class="sign-in">Sign in</button>
   <p class="info"> </p>
