@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spotify Web Playback SDK Quick Start Tutorial</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <script src="oauth.js"></script>
+  <script>
+OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
+OAuth.popup('spotify').done(function(result) {
+    console.log(result)
+    // do some stuff with result
+    console.log('Positive or Negative?', result)
+});
+</script>
+  <script>
+window.onSpotifyWebPlaybackSDKReady = () => {
+    $("button").click(function(){
+  const token = 'BQD8NEPQTaCOPm9EXp8pcMeO5kMdtbfjfWU3dHczuDyxdLO7ZWZqyaJm4-78AiYXx--ixJblia4Y6da4g93w4o_iHu0AAnky_ARlxjHD2ZgKix0OXqwVsGoMaMUQLueGno8-1iATAqiOBUHHyKfnbUUZcX4G0Bke2CTaI0Q';
+  const player = new Spotify.Player({
+    name: 'Isak spotify test',
+    getOAuthToken: cb => { cb(token); }
+  });
+
+  // Error handling
+  player.addListener('initialization_error', ({ message }) => { console.error(message); });
+  player.addListener('authentication_error', ({ message }) => { console.error(message); });
+  player.addListener('account_error', ({ message }) => { console.error(message); });
+  player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+  // Playback status updates
+  player.addListener('player_state_changed', ({
+  position,
+  duration,
+  track_window: { current_track }
+}) => {
+  // song info
+  $(".info").text('current_track, position, : duration');
+  console.log('Currently Playing', current_track);
+  console.log('Position in Song', position);
+  console.log('Duration of Song', duration);
+});
+
+  // Ready
+  player.addListener('ready', ({ device_id }) => {
+    console.log('Ready with Device ID', device_id);
+  });
+
+  // Not Ready
+  player.addListener('not_ready', ({ device_id }) => {
+    console.log('Device ID has gone offline', device_id);
+  });
+
+  // Connect to the player!
+player.connect().then(success => {
+  if (success) {
+    console.log('The Web Playback SDK successfully connected to Spotify!');
+  }
+})
+// Pause
+ $(".pause").click(function(){
+  player.pause().then(() => {
+  console.log('Paused!');
+});
+});
+});
+};
+</script>
+  <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
+  <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
+
+  <script src="https://sdk.scdn.co/spotify-player.js"></script> 
+  <!-- We will insert our code here. -->
+  <button id="connect">Start Spotify Connect</button>
+  <button class="pause">Play/Pause</button>
+  <p class="info"> </p>
+</body>
+</html>
