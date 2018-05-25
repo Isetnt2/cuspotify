@@ -380,7 +380,7 @@ module.exports = function(OAuthio) {
       if (wnd) {
         wnd.focus();
         interval = window.setInterval(function() {
-          if (wnd === null || wnd) {
+          if (wnd === null || wnd.closed) {
             window.clearInterval(interval);
             if (!gotmessage) {
               if (defer != null) {
