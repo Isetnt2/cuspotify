@@ -32,7 +32,7 @@ OAuth.popup('spotify').done(function(result) {
 });
 window.onSpotifyWebPlaybackSDKReady = () => {
     $(".connect").click(function(){
-  const token = oauthtoken;
+  const token = 'BQAGZ917JFaAoE6xIzWxY7VfTNGxLusYBN8nlarViSH1RrtvUmDWh0hqLKiC-BUuNVXzAp_YjHCcbgFIialS8RxXidhRfA-XNJq-aqA8uld7tzRpx4DoYByh97S3CBeXgRepIaPWrHfM7RypopbDzq7loflwImTZrvJn_E8';
   const player = new Spotify.Player({
     name: 'cuSpotify',
     getOAuthToken: cb => { cb(token); }
