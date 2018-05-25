@@ -1,0 +1,30 @@
+body{
+  background-color: #191414;
+}
+div {
+-webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #1DB954;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  display: inline;
+}
+
+div:hover {
+  background: #188f42;
+  text-decoration: none;
+}
+h1, h2, p{
+  font-family: arial;
+  color: #ffffff;
+  text-decoration: none;
+}
+.logo {
+  margin-top: 22.5px;
+  margin-left: 22.5px;
+  width: 150px;
+}
