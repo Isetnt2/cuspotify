@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Spotify Web Playback SDK Quick Start Tutorial</title>
+  <title>cuSpotify</title>
     <link rel="stylesheet" type="text/css" href="http://cuspotify.co.vu/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -24,7 +24,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     $(".connect").click(function(){
   const token = 'BQA3T2Ev8QbjJ1RH20IM1QdRrU6hinTuUfPFdVacfAHBWefct2HeGXLtWOLIc9J230s3_0ZVPEtO7GX1nbE_vgctVilcHwLwo_rYzP-_R4XdCQbsHTAi9I-rKRGS86XJEo2i2AglClfnrm6K6-HMmj4PQ7uNkCUHNmsblv8';
   const player = new Spotify.Player({
-    name: 'Isak spotify test',
+    name: 'cuSpotify',
     getOAuthToken: cb => { cb(token); }
   });
 
