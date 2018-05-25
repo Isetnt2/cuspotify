@@ -9,6 +9,7 @@
   <script src="http://cuspotify.co.vu/oauth.js"></script>
   <script>
   $(document).ready(function(){
+    var oauthtoken = result;
     OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
   $(".sign-in").click(function(){
 OAuth.popup('spotify').done(function(result) {
@@ -20,13 +21,18 @@ OAuth.popup('spotify').done(function(result) {
 });
 </script>
   <script>
-window.onSpotifyWebPlaybackSDKReady = () => {
-    $(".connect").click(function(){
-  const token = OAuth.popup('spotify').done(function(result) {
+OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
+    var oauthtoken = result;
+  $(".sign-in").click(function(){
+OAuth.popup('spotify').done(function(result) {
     console.log(result)
     // do some stuff with result
     console.log('Positive or Negative?', result)
 });
+});
+window.onSpotifyWebPlaybackSDKReady = () => {
+    $(".connect").click(function(){
+  const token = oauthtoken;
   const player = new Spotify.Player({
     name: 'cuSpotify',
     getOAuthToken: cb => { cb(token); }
