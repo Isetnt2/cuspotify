@@ -17,7 +17,7 @@
     });
 });
   </script>
-  <script src="http://cuspotify.co.vu/oauth.js"></script>
+  <script src="oauth.js"></script>
   <script>
   $(document).ready(function(){
     OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
@@ -51,8 +51,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   duration,
   track_window: { current_track }
 }) => {
-  // song info
-  $(".info").text('current_track, position, : duration');
   console.log('Currently Playing', current_track);
   console.log('Position in Song', position);
   console.log('Duration of Song', duration);
@@ -76,9 +74,13 @@ player.connect().then(success => {
 })
 // Pause
  $(".pause").click(function(){
-  player.pause().then(() => {
-  console.log('Paused!');
+  player.togglePlay().then(() => {
 });
+});
+$(".disconnect").click(function(){
+player.disconnect().then(() => {
+console.log('Disconnected');
+})
 });
 });
 };
@@ -88,12 +90,14 @@ player.connect().then(success => {
 
   <script src="https://sdk.scdn.co/spotify-player.js"></script> 
   <!-- We will insert our code here. -->
-  <div class="connect">Start Spotify Connect</div>
-  <div class="pause">Play/Pause</div>
-  <div class="sign-in">Sign in</div>
+  <div class="connect button">Start Spotify Connect</div>
+  <div class="disconnect button">Disconnect from Client</div>
+  <div class="pause button"><img class="play" src="http://cuspotify.co.vu/play.svg" alt=""/></div>
+  <div class="sign-in button">Sign in</div>
+  <div class="notif button">Notif</div>
   <p class="info"> </p>
   <img class="logo" src="http://cuspotify.co.vu/logo-spotify.png" alt=""/>
   <p class="greeting-id">The ID is </p>
-            <p class="greeting-content">The content is </p>
+  <p class="greeting-content">The content is </p>
 </body>
 </html>
