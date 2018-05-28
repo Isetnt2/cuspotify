@@ -33,7 +33,36 @@ OAuth.popup('spotify').done(function(result) {
   <script>
 window.onSpotifyWebPlaybackSDKReady = () => {
     $(".connect").click(function(){
-  const token = 'BQC4hDl9mYwe5TDiGfIvuupmgamDf7b4JiNddOdDL0I6Lhp5eqdASg6THCo-6UUVGEpYIYjIAG56hpT_q8UgIWRUHz5X8mN9evrSGJ7P325DFV55-jSenMRRn2xAeGpcra-KN0USL5j8R7_FD-FzzGKkqXJXA9H9uJl-7kc';
+  const hash = window.location.hash
+.substring(1)
+.split('&')
+.reduce(function (initial, item) {
+  if (item) {
+    var parts = item.split('=');
+    initial[parts[0]] = decodeURIComponent(parts[1]);
+  }
+  return initial;
+}, {});
+window.location.hash = '';
+
+// Set token
+let _token = hash.access_token;
+
+const authEndpoint = 'https://accounts.spotify.com/authorize';
+
+// Replace with your app's client ID, redirect URI and desired scopes
+const clientId = 'f49138eb3c684fd4af3dfc8f2b0474bb';
+const redirectUri = 'http://cuspotify.co.vu';
+const scopes = [
+  'streaming',
+  'user-read-birthdate',
+  'user-read-private',
+  'user-modify-playback-state',
+  'user-read-email'
+];
+if (!_token) {
+  window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+}
   const player = new Spotify.Player({
     name: 'Isak spotify test',
     getOAuthToken: cb => { cb(token); }
@@ -82,6 +111,11 @@ player.disconnect().then(() => {
 console.log('Disconnected');
 })
 });
+ player.on('player_state_changed', state => {
+    console.log(state)
+    $('#info-pic').attr('src', state.track_window.current_track.album.images[0].url);
+    $('#info').text(state.track_window.current_track.name);
+  });
 });
 };
 </script>
@@ -92,12 +126,11 @@ console.log('Disconnected');
   <!-- We will insert our code here. -->
   <div class="connect button">Start Spotify Connect</div>
   <div class="disconnect button">Disconnect from Client</div>
-  <div class="pause button"><img class="play" src="http://cuspotify.co.vu/play.svg" alt=""/></div>
+  <div class="pause button">Play/pause</div>
   <div class="sign-in button">Sign in</div>
-  <div class="notif button">Notif</div>
-  <p class="info"> </p>
+  <div class="notif button">Notif</div></br>
+  <img id="info-pic"/>
+  <p id="info"></p>
   <img class="logo" src="http://cuspotify.co.vu/logo-spotify.png" alt=""/>
-  <p class="greeting-id">The ID is </p>
-  <p class="greeting-content">The content is </p>
 </body>
 </html>

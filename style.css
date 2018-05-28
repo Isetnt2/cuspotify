@@ -1,7 +1,7 @@
 body{
   background-color: #191414;
 }
-div{
+.button{
 -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -28,7 +28,6 @@ h1, h2, p{
   margin-left: 22.5px;
   width: 150px;
 }
-.play{
-  width: 25px;
-  height: 25px;
+#info-pic{
+  margin-top: 5em;
 }
