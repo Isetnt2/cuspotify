@@ -33,7 +33,7 @@ OAuth.popup('spotify').done(function(result) {
   <script>
 window.onSpotifyWebPlaybackSDKReady = () => {
     $(".connect").click(function(){
-  const token = 'BQAGZ917JFaAoE6xIzWxY7VfTNGxLusYBN8nlarViSH1RrtvUmDWh0hqLKiC-BUuNVXzAp_YjHCcbgFIialS8RxXidhRfA-XNJq-aqA8uld7tzRpx4DoYByh97S3CBeXgRepIaPWrHfM7RypopbDzq7loflwImTZrvJn_E8';
+  const token = 'BQC4hDl9mYwe5TDiGfIvuupmgamDf7b4JiNddOdDL0I6Lhp5eqdASg6THCo-6UUVGEpYIYjIAG56hpT_q8UgIWRUHz5X8mN9evrSGJ7P325DFV55-jSenMRRn2xAeGpcra-KN0USL5j8R7_FD-FzzGKkqXJXA9H9uJl-7kc';
   const player = new Spotify.Player({
     name: 'Isak spotify test',
     getOAuthToken: cb => { cb(token); }
