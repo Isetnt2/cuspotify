@@ -1,7 +1,7 @@
 body{
   background-color: #191414;
 }
-.sign-in, .connect, .pause {
+div {
 -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -12,10 +12,9 @@ body{
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   display: inline;
- cursor: pointer;
 }
 
-.sign-in, .connect, .pause:hover {
+div:hover {
   background: #188f42;
   text-decoration: none;
 }
