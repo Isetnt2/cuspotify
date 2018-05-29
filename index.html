@@ -33,6 +33,7 @@ OAuth.popup('spotify').done(function(result) {
 </script>
   <script>
 window.onSpotifyWebPlaybackSDKReady = () => {
+    $(".connect").click(function(){
   // Get the hash of the url
 const hash = window.location.hash
 .substring(1)
@@ -67,7 +68,7 @@ if (!_token) {
 }
 
 // Set up the Web Playback SDK
-$(".connect").click(function(){
+
 window.onSpotifyPlayerAPIReady = () => {
   const player = new Spotify.Player({
     name: 'Spotify test',
@@ -123,7 +124,7 @@ console.log('Disconnected');
     $('#info').text(state.track_window.current_track.name);
   });
 });
-});
+};
 </script>
   <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
   <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
