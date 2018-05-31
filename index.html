@@ -2,7 +2,7 @@
 <html>
 <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spotify Web Playback SDK Quick Start Tutorial</title>
+  <title>Cuspotify</title>
   <link rel="stylesheet" type="text/css" href="http://cuspotify.co.vu/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -33,8 +33,8 @@ OAuth.popup('spotify').done(function(result) {
 </script>
   <script>
 window.onSpotifyWebPlaybackSDKReady = () => {
-    $(".connect").click(function(){
-  // Get the hash of the url
+$(document).ready(function(){
+    // Get the hash of the url
 const hash = window.location.hash
 .substring(1)
 .split('&')
@@ -67,6 +67,9 @@ const scopes = [
 if (!_token) {
   window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
 }
+});
+    $(".connect").click(function(){
+
 
 // Set up the Web Playback SDK
 
