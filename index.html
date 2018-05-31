@@ -1,116 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cuspotify</title>
+  <head>
+    <title>Spotify Web Playback SDK Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="http://cuspotify.co.vu/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-  <script src="oauth.js"></script>
-  <!--
-  <script>
-  $(document).ready(function(){
-    OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
-  $(".sign-in").click(function(){
-OAuth.popup('spotify').done(function(result) {
-    console.log(result)
-    // do some stuff with result
-    console.log('Positive or Negative?', result)
-});
-});
-});
-</script>
--->
-  <script>
-window.onSpotifyWebPlaybackSDKReady = () => {
-    $(".connect").click(function(){
-// Get the hash of the url
-const hash = window.location.hash
-.substring(1)
-.split('&')
-.reduce(function (initial, item) {
-  if (item) {
-    var parts = item.split('=');
-    initial[parts[0]] = decodeURIComponent(parts[1]);
-  }
-  return initial;
-}, {});
-window.location.hash = '';
-
-// Set token
-let token = hash.access_token;
-
-const authEndpoint = 'https://accounts.spotify.com/authorize';
-
-// Replace with your app's client ID, redirect URI and desired scopes
-const clientId = 'f49138eb3c684fd4af3dfc8f2b0474bb';
-const redirectUri = 'http://cuspotify.co.vu';
-const scopes = [
-  'streaming',
-  'user-read-birthdate',
-  'user-read-private',
-  'user-modify-playback-state'
-];
-
-// If there is no token, redirect to Spotify authorization
-if (!token) {
-  window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
-}
-
-// Set up the Web Playback SDK
-
-window.onSpotifyPlayerAPIReady = () => {
-  const player = new Spotify.Player({
-    name: 'Cuspotify',
-    getOAuthToken: cb => { cb(token); }
-  });
-
-  // Error handling
-  player.on('initialization_error', e => console.error(e));
-  player.on('authentication_error', e => console.error(e));
-  player.on('account_error', e => console.error(e));
-  player.on('playback_error', e => console.error(e));
-
-  // Playback status updates
-  player.on('player_state_changed', state => {
-    console.log(state)
-    $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
-    $('#current-track-name').text(state.track_window.current_track.name);
-  });
-
-  // Ready
-  player.on('ready', data => {
-    console.log('Ready with Device ID', data.device_id);
-
-  // Connect to the player!
-  player.connect();
-  });
-};
-});
-// Pause
- $(".pause").click(function(){
-  player.togglePlay().then(() => {
-});
-});
-$(".disconnect").click(function(){
-player.disconnect().then(() => {
-console.log('Disconnected');
-});
-});
-};
-</script>
-  <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
-  <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
-
-  <script src="https://sdk.scdn.co/spotify-player.js"></script> 
-  <!-- We will insert our code here. -->
-  <div class="connect button">Start Spotify Connect</div>
-  <div class="disconnect button">Disconnect from Client</div>
-  <div class="pause button">Play/pause</div>
-  <div class="sign-in button">Sign in</div>
-  <div class="notif button">Notif</div><br />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    
+    <!-- Include the Web Playback SDK -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    
+    <!-- Include our Javascript -->
+    <script src="http://cuspotify.co.vu/script.js" defer></script>
+  </head>
+  
+  <body class="container">
+  <h1>A custom web client for Spotify.</h1>
+  <div class="connect button">Connect to client</div>
+  <div class="disconnect button">Disconnect from Client</div> <br />
   <img id="info-pic"/>
   <p id="info"></p>
+    <div class="playpause">
+    <input type="checkbox" value="None" id="playpause" name="check" />
+    <label for="playpause" tabindex=1></label>
+  </div>
   <img class="logo" src="http://cuspotify.co.vu/logo-spotify.png" alt=""/>
-</body>
+  </body>
+  
 </html>
