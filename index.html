@@ -38,7 +38,7 @@ const hash = window.location.hash
 window.location.hash = '';
 
 // Set token
-let _token = hash.access_token;
+let token = hash.access_token;
 
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 
@@ -53,7 +53,7 @@ const scopes = [
 ];
 
 // If there is no token, redirect to Spotify authorization
-if (!_token) {
+if (!token) {
   window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
 }
 
@@ -62,7 +62,7 @@ if (!_token) {
 window.onSpotifyPlayerAPIReady = () => {
   const player = new Spotify.Player({
     name: 'Cuspotify',
-    getOAuthToken: cb => { cb(_token); }
+    getOAuthToken: cb => { cb(token); }
   });
 
   // Error handling
