@@ -5,20 +5,8 @@
   <title>Cuspotify</title>
   <link rel="stylesheet" type="text/css" href="http://cuspotify.co.vu/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-  <script>
-    $(document).ready(function() {
-    $.ajax({
-      method: "POST"  
-      url: "https://accounts.spotify.com/api/token"
-    }).then(function(data) {
-       $('.greeting-id').append(data.id);
-       $('.greeting-content').append(data.content);
-    });
-});
-  </script>
   <script src="oauth.js"></script>
+</head>
   <script>
   $(document).ready(function(){
     OAuth.initialize('Xxg6VRsPp-9Fs6xwSwjEfjIqQtw')
