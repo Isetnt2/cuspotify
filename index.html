@@ -87,7 +87,10 @@ window.onSpotifyPlayerAPIReady = () => {
   });
 
   // Connect to the player!
-  player.connect();
+  player.connect().then(() => {
+  console.log('Connected');
+  });
+  }
 }
 // Pause
  $(".pause").click(function(){
