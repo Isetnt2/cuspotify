@@ -18,7 +18,7 @@ const authEndpoint = 'https://accounts.spotify.com/authorize';
 
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = 'f49138eb3c684fd4af3dfc8f2b0474bb';
-const redirectUri = 'https://cuspotify.glitch.me/';
+const redirectUri = 'https://isetnt2.github.io/cuspotify/';
 const scopes = [
   'streaming',
   'user-read-birthdate',
