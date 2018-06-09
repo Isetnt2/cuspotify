@@ -5,29 +5,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" type="text/css" href="https://isetnt2.github.io/cuspotify/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-    
     <!-- Include the Web Playback SDK -->
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     
     <!-- Include our Javascript -->
-    <script src="https://isetnt2.github.io/cuspotify/script.js"></script>
+
+    <script src="/script.js" defer><https://isetnt2.github.io/cuspotify/script>
   </head>
   
   <body class="container">
   <div class="connect button">Connect to client</div>
   <div class="disconnect button">Disconnect from Client</div> <br />
-  <img id="info-pic"/>
+    <a class="link"><img id="info-pic" class="ri"/></a>
+  <img id="nexttrack" class="nexttrack" />
   <p id="info"></p>
-    <div class="playpause">
-    <input type="checkbox" value="None" id="playpause" name="check" />
-    <label for="playpause" tabindex=1></label>
-  </div>
-  <img class="logo" src="https://isetnt2.github.iocuspotify/logo-spotify.png" alt=""/>
+    <div class="crl center-inner">
+    <ul>
+      <i class="fa fa-fw fa-step-backward fa-3x prev"></i>
+	<i class="fa fa-fw fa-play fa-3x play"></i>
+    <i class=" fa fa-fw fa-step-forward fa-3x next"></i>
+      </ul>
+    </div>
+  <img class="logo" src="https://isetnt2.github.io/cuspotify/logo-spotify.png" alt=""/>
   </body>
   
 </html>
