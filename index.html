@@ -27,6 +27,7 @@
     <script src="/slider.js"></script>
     <script src="/script.js" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="notification.js"></script>
   </head>
   
   <body class="container">
@@ -36,7 +37,7 @@
   <img id="nexttrack" class="nexttrack" />
   <p id="info"></p>
 
-    <div class="crl center-inner" id="noselect">
+    <div class=" crl center-inner" id="noselect">
     <ul>
       <i class="fa fa-fw fa-step-backward fa-3x prev"></i>
 	<i class="fa fa-fw fa-play fa-3x play"></i>
@@ -48,11 +49,14 @@
       </ul>
           <p id="duration"></p><p id="position-value"></p>
       <div class="ui-slider ui-slider-horizontal pos" id="position-slider"></div>
-    <div class="ui-slider ui-slider-horizontal" id="slider"> <i class="mdi mdi-volume-low volume volume-low"></i>
+    <div class="volume-slider">
+      <i class="mdi mdi-volume-low volume volume-low"></i>
       <i class="mdi mdi-volume-medium volume volume-medium"></i>
-      <i class="mdi mdi-volume-high volume volume-high"></i> <p id="slidervalue"></p></div>
-    </div>
-  <img class="logo" src="http://cuspotify.co.vu/logo-spotify.png" alt=""/>
+      <i class="mdi mdi-volume-high volume volume-high"></i>
+      <div class="ui-slider ui-slider-horizontal" id="slider"></div>
+       <p id="slidervalue"></p>
+      </div>
+      </div>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   </body>

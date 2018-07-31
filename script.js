@@ -55,8 +55,11 @@ player.addListener('ready', ({ device_id }) => {
   devid = device_id;
     console.log('Device ID', devid)
 })
+player.on('player_state_changed', state => {
+
+});
 player.addListener('player_state_changed', ({
-  position,
+ position,
   duration,
   paused,
   track_window: { current_track, next_tracks }
@@ -69,9 +72,24 @@ player.addListener('player_state_changed', ({
   serverduration = duration;
 
 });
+  
   // Playback status updates
   player.on('player_state_changed', state => {
-    console.log(state)
+ if(!document.hasFocus()) {
+    var songNotification = function() {
+};
+var options = {
+    title: state.track_window.current_track.name,
+    options: {
+      body: 'ARTIST: ' + state.track_window.current_track.artists[0].name + ", " + state.track_window.current_track.artists[1].name,
+      icon: state.track_window.current_track.album.images[0].url,
+      tag: "song",
+      onClose: songNotification
+    }
+};
+$("#easyNotify").easyNotify(options);
+ }  
+   console.log(state)
     $('#info-pic').attr('src', state.track_window.current_track.album.images[0].url);
     $('#info').text(state.track_window.current_track.name);
    
@@ -120,7 +138,6 @@ $('.prev').click(function(){
       });
 });
 
-	
 
   // Ready
   player.on('ready', data => {
@@ -304,43 +321,6 @@ $.ajax(settings).done(function (response) {
   $(".repeat-2").hide();
 $(".repeat-track").show();
 });
-
-$( "#position-slider" ).slider({
-  max: serverduration,
-  min: 0,
-  value: 0,
-  step: 1,
-  animate: "fast"
-});
-setInterval(function() {
-  player.getCurrentState().then(state => {
-      clientposition = $( "#position-slider" ).slider( "value" )
-      serverposition = state.position
-      serverduration = state.duration
-      });
-  }, 1);
- 
-  setInterval(function(){
-  if (clientposition != serverposition ) {
-$("#position-slider").slider({
-value: serverposition
-});
-}
-else {
-
-}
-  }, 600);
-  $( "#position-slider" ).slider({
-  change: function( event, ui ) {},
-  slide: function( event, ui ) {}
-});
-  $( "#position-slider" ).on( "slide", function( event, ui ) {
-    updateValue();
-    var val = $( "#position-slider" ).slider( "value" );
-player.seek(val).then(() => {
-  
-});
-  });
   $(window).keypress(function(e) {
   if (e.keyCode == 0 || e.keyCode == 32) {
 	
@@ -349,4 +329,5 @@ player.togglePlay().then(() =>  {
 });
   }
 });
+
 };

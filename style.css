@@ -140,6 +140,14 @@ display: none;
 	-o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
+.volume-slider {
+    min-width: 100% !important;
+    white-space: nowrap;
+}
+.volume-slider div { 
+  display: inline-block; 
+  width: 100%;
+}
 
 .crl{
   color: #2FC5FC;
