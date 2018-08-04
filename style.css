@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Signika');
-body{
-  background-color: #2F3335;
-  
-}
 .button{
   margin-top: 3em;
 -webkit-border-radius: 28;
@@ -21,12 +17,7 @@ body{
   background: #2BB4E6;
   text-decoration: none;
 }
-h1, h2, p{
-font-family: 'Signika', sans-serif;
-  color: #F9FDFF;
-  text-decoration: none;
-  text-align: center;
-}
+
 .logo {
   margin-top: 22.5px;
   margin-left: 22.5px;
@@ -40,21 +31,21 @@ font-family: 'Signika', sans-serif;
 #nexttrack{
 display: none;
 }
-#info {
+.info {
 display: none;
-width: 300px;
-height: 19px;
-margin-top: 22%;
+width: 190px;
+height: 25px;
+margin-top: 0%;
+-webkit-margin-after: 0.05em;
 text-align: center;
 overflow: hidden;
 white-space: nowrap;
 text-overflow: ellipsis;
 margin-left: 50%;
--webkit-transform: translate(-50%, -0%);
-	-moz-transform: translate(-50%, -0%);
-	-ms-transform: translate(-50%, -0%);
-	-o-transform: translate(-50%, -0%);
-	transform: translate(-50%, -0%);
+-webkit-transform: translate(-43%, 1205%);
+	-moz-transform: translate(-43%, 1205%);
+1205%	-o-transform: translate(-43%, 1205%);
+	transform: translate(-43%, 1205%);
 
 }
 .nexttrack{

@@ -74,26 +74,37 @@ player.addListener('player_state_changed', ({
 });
   
   // Playback status updates
-  player.on('player_state_changed', state => {
+  player.on('player_state_changed', state =>  {
+  var artistName = "";
+for (var i = 0; i < state.track_window.current_track.artists.length; i++) {
+    artistName += state.track_window.current_track.artists[i].name + " ";
+}  
+  var songName = state.track_window.current_track.name;
+  var artist = state.track_window.current_track.artists;
+  var albumCover = state.track_window.current_track.album.images[0].url;  
+  var nextAlbumCover = state.track_window.next_tracks[0].album.images[0].url;
+  var songId = state.track_window.current_track.id;
  if(!document.hasFocus()) {
-    var songNotification = function() {
-};
+
+     var songNotification = function() {
+     };
 var options = {
-    title: state.track_window.current_track.name,
+    title: songName,
     options: {
-      body: 'ARTIST: ' + state.track_window.current_track.artists[0].name + ", " + state.track_window.current_track.artists[1].name,
-      icon: state.track_window.current_track.album.images[0].url,
+      body: 'ARTIST: ' + artistName,
+      icon: albumCover,
       tag: "song",
       onClose: songNotification
     }
 };
 $("#easyNotify").easyNotify(options);
- }  
+ } 
    console.log(state)
-    $('#info-pic').attr('src', state.track_window.current_track.album.images[0].url);
-    $('#info').text(state.track_window.current_track.name);
-   
-    $('#nexttrack').attr('src', state.track_window.next_tracks[0].album.images[0].url);
+    $('#info-pic').attr('src', albumCover);
+    $('#songName').text(songName);
+    $('title').text(songName)
+    $('#artists').text(artistName + " ");
+    $('#nexttrack').attr('src', nextAlbumCover);
       if ( (state.paused == false)){
   $('.play').hide();
   $('.pause').show();
@@ -116,7 +127,7 @@ else if (state.repeat_mode == 2){
   $('.repeat-2').show();
   $('.repeat-1').hide();
   $('.repeat-track').hide();
-      $('#nexttrack').attr('src', state.track_window.current_track.album.images[0].url);
+      $('#nexttrack').attr('src', albumCover);
 
   }
   else{
@@ -133,8 +144,8 @@ $('.prev').click(function(){
   console.log('Changed position!');
 });
 });
-      $('#info-pic').on('click', function(){
-      window.open(('https://open.spotify.com/track/' + state.track_window.current_track.id), '_blank');
+      $('#info-pic').off('click').on('click', function(){
+      window.open(('https://open.spotify.com/track/' + songId), '_blank');
       });
 });
 
@@ -158,7 +169,8 @@ $('.connect').click(function(){
   $('.play').show();
   $('.crl').show();
   $('#info-pic').show();
-  $('#info').show();
+  $('#songName').show();
+  $('#artists').show();
   $('#nexttrack').show();
   $('.repeat-track').show();
   $("#slider").slider();
@@ -167,7 +179,8 @@ $('.connect').click(function(){
 $('.disconnect').click(function(){
   player.disconnect();
   $('.crl').hide();
-  $('#info').hide();
+  $('#songName').hide();
+  $('#artists').hide();
   $('#info-pic').hide();
   $('#nexttrack').hide();
   $('.repeat-track').hide;
