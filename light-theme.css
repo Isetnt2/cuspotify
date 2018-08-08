@@ -1,72 +1,74 @@
-@import url('https://fonts.googleapis.com/css?family=Signika');
-body{
-  background-color: #98a7af;
-  
+@import url("https://fonts.googleapis.com/css?family=Signika");
+body {
+  background-color: #0d6d96;
 }
 
-h1, h2, p{
-font-family: 'Signika', sans-serif;
-  color: #060606;
+h1, h2, p {
+  font-family: 'Signika', sans-serif;
+  color: #e3ffe2;
   text-decoration: none;
   text-align: center;
 }
-.button{
-background:#0b465b !important;
-color: #98a7af !important;
+
+.button {
+  background: #ff5b69 !important;
+  color: #e3ffe2 !important;
 }
-.crl{
-color:#0b465b !important;
+
+.crl {
+  color: #ff5b69 !important;
 }
-.repeat-track{
-color: #01374ac7 !important; 
+
+.repeat-track {
+  color: #6da8e8 !important;
 }
-.ui-slider .ui-slider-handle{
-background: #0b465b !important;
+
+.ui-slider .ui-slider-handle {
+  background: #ff5b69 !important;
 }
+
 .settings {
-color: #000;
+  color: #000;
   position: absolute;
-    top: 8px;
-    right: 8px;}
+  top: 8px;
+  right: 8px;
+}
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content */
 .modal-content {
-    background-color: #bfbbca;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-    height: 10%;
+  background-color: #0095a9;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  height: 10%;
 }
 
-/* The Close Button */
 .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 .toggle-body {
   width: 4rem;
   height: 2rem;
@@ -77,9 +79,6 @@ color: #000;
   border-radius: 2rem;
 }
 
-.toggle-body--on {
-}
-
 .toggle-btn {
   width: 1rem;
   height: 1rem;
@@ -88,74 +87,73 @@ color: #000;
   left: calc(27% - 1rem / 2);
   background: white;
   border-radius: 2rem;
-  background: #618BFF;
+  background: #ff5b69;
   cursor: pointer;
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
   transition: 1.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
 }
 
 .toggle-btn--on {
   transition: 1.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
   -webkit-transform: translateX(150%);
-          transform: translateX(150%);
-  background: #FF8FDE;
+  transform: translateX(150%);
+  background: #ff5b69;
 }
 
 @-webkit-keyframes angle {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   50% {
     -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+    transform: rotate(45deg);
   }
   100% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
-
 @keyframes angle {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   50% {
     -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+    transform: rotate(45deg);
   }
   100% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
 @-webkit-keyframes angle-reverse {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   50% {
     -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
+    transform: rotate(-45deg);
   }
   100% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
 @keyframes angle-reverse {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   50% {
     -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
+    transform: rotate(-45deg);
   }
   100% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }

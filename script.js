@@ -45,6 +45,7 @@ window.onSpotifyPlayerAPIReady = () => {
     $('.mute').hide();
     $('.repeat-2').hide();
     $('.repeat-1').hide();
+    $('.previus').hide();
   // Error handling
   player.on('initialization_error', e => console.error(e));
   player.on('authentication_error', e => console.error(e));
@@ -52,7 +53,7 @@ window.onSpotifyPlayerAPIReady = () => {
   player.on('playback_error', e => console.error(e));
   	
 player.addListener('ready', ({ device_id }) => {
-  devid = device_id;
+   devid = device_id;
     console.log('Device ID', devid)
 })
 player.on('player_state_changed', state => {
@@ -139,24 +140,21 @@ else if (state.repeat_mode == 2){
   console.log('Changed position!');
 });
 });
-$('.prev').click(function(){
-  player.seek(0 * 1000).then(() => {
-  console.log('Changed position!');
-});
-});
+
       $('#info-pic').off('click').on('click', function(){
       window.open(('https://open.spotify.com/track/' + songId), '_blank');
       });
+
 });
 
 
   // Ready
   player.on('ready', data => {
     console.log('Ready with Device ID', data.device_id);
-    const deviceid = data.device_id;
+    const deviceId = data.device_id;
     // Play a track using our new device ID
     player(data.device_id);
-    deviceid
+    deviceId
     
   });
 $('.connect').click(function(){
@@ -175,6 +173,7 @@ $('.connect').click(function(){
   $('.repeat-track').show();
   $("#slider").slider();
   $('.volume-high').show();
+  $('.previus').hide();
 });
 $('.disconnect').click(function(){
   player.disconnect();
@@ -190,6 +189,7 @@ $('.disconnect').click(function(){
   $('.pause').hide();
   $('.volume').hide();
   $('.mute').hide();
+  $('.previus').hide();
 });
 $('.play').click(function(){
 	player.resume().then(() => { console.log('Resumed playback!'); 
@@ -202,9 +202,29 @@ player.pause().then(() => { console.log('Paused playback!');
 $('.next').click(function(){
 	player.nextTrack().then(() => { console.log('Skipped to next track!'); });
 });
-$('.prev').click(function(){
-player.previousTrack().then(() => { console.log('Set to previous track!'); });
+    setInterval(function() { 
+  player.getCurrentState().then(state => {
+  if (!state) {
+    console.error('User is not playing music through the Web Playback SDK');
+    return;
+  }
+
+  let {
+    current_track,
+    next_tracks: [next_track]
+  } = state.track_window;
+  $('.prev').off('click').on('click', function(){
+    if( state.position >= 3000){
+  player.seek(0 * 1000).then(() => {});   
+     }
+  else if (state.position <= 3000 ){
+    	player.previousTrack().then(() => {
+  console.log('Set to previous track!');
 });
+  }
+    }); 
+});
+    }, 500);
 $( "#slider" ).slider({
   max: 100,
   min: 0,

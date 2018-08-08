@@ -66,6 +66,12 @@ cursor: pointer;
 .prev:active{
 color: #2BB4E6;
 }
+.previus{
+cursor: pointer;
+}
+.previus:active{
+color: #2BB4E6;
+}
 .next{
 cursor: pointer;
 }
