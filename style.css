@@ -126,7 +126,6 @@ display: none;
   display: inline-block; 
   width: 100%;
 }
-
 .crl{
   color: #2FC5FC;
 display: none;
@@ -190,12 +189,13 @@ display: none;
             transition: 0.5s;
         }
         .container:hover img:nth-child(1){
-            transform: translate(100px, 0px);
+            transform: translate(100px, 0px) scale(.7);
             opacity: .4;
         }
         .container:hover img:nth-child(2){
-            transform: translate(50px, 0px);
+            transform: translate(50px, 0px) scale(.9);
             opacity: .6;
+            scale: .9;
         }
         .container:hover img:nth-child(3){
             transform: translate(0px, 0px);

@@ -39,6 +39,10 @@ window.onSpotifyPlayerAPIReady = () => {
     name: 'Cuspotify test client',
     getOAuthToken: cb => { cb(_token); }
     });
+    var devid = "";
+    var serverduration = "";
+    var serverval = "";
+    var clientval = "";
     $('.volume-high').hide();
     $('.volume-medium').hide();
     $('.volume-low').hide();
@@ -53,7 +57,7 @@ window.onSpotifyPlayerAPIReady = () => {
   player.on('playback_error', e => console.error(e));
   	
 player.addListener('ready', ({ device_id }) => {
-   devid = device_id;
+   var devid = device_id;
     console.log('Device ID', devid)
 })
 player.on('player_state_changed', state => {
@@ -70,7 +74,7 @@ player.addListener('player_state_changed', ({
   console.log('Duration of Song', duration);
   console.log('Paused', paused);
   console.log('Next track', next_tracks[0] );
-  serverduration = duration;
+  var serverduration = duration;
 
 });
   
@@ -78,7 +82,15 @@ player.addListener('player_state_changed', ({
   player.on('player_state_changed', state =>  {
   var artistName = "";
 for (var i = 0; i < state.track_window.current_track.artists.length; i++) {
-    artistName += state.track_window.current_track.artists[i].name + " ";
+  if (i < state.track_window.current_track.artists.length - 1){
+  artistName += state.track_window.current_track.artists[i].name + ", ";
+      } 
+  else if (i = state.track_window.current_track.artists.length - 1){
+    artistName += state.track_window.current_track.artists[i].name + "";
+  }
+   else if (state.track_window.current_track.artists.length = 1){
+  artistName += state.track_window.current_track.artists[i].name;
+      }
 }  
   var songName = state.track_window.current_track.name;
   var artist = state.track_window.current_track.artists;
@@ -141,15 +153,22 @@ else if (state.repeat_mode == 2){
   console.log('Changed position!');
 });
 });
-      $('#info-pic').off('click').on('click', function(){
+      $('#album3').off('click').on('click', function(){
       window.open(('https://open.spotify.com/track/' + songId), '_blank');
       });
   var album1 = state.track_window.current_track.album.images[0].url;  
   var album2 = state.track_window.next_tracks[0].album.images[0].url;
   var album3 = state.track_window.next_tracks[1].album.images[0].url;
+    if(state.repeat_mode == 2){
     $('#album3').attr('src', album1);
-    $('#album2').attr('src', album2);
-    $('#album1').attr('src', album3);
+    $('#album2').attr('src', album1);
+    $('#album1').attr('src', album1);
+  }  
+else {
+  $('#album3').attr('src', album1);
+  $('#album2').attr('src', album2);
+  $('#album1').attr('src', album3);
+}
   });
 
 
@@ -298,10 +317,6 @@ $('.volume-low').show();
  $('.mute').hide(); 
  }
 }
-
-$('.playlist').click(function(){
-  
-  });  
 $('.repeat-track').click(function(){
 var settings = {
   "async": true,
