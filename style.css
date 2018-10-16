@@ -4,6 +4,8 @@
 html, body{height:100%;} 
 body{
 margin: 0;
+max-height: 100vh;
+max-width: 100%;
 }
 .button{
   margin-top: 3em;
@@ -34,6 +36,7 @@ margin-bottom: 2px !important;
 height: 15px !important;
 margin-block-start: 2px !important;
 margin-block-end: 2px !important;
+cursor: pointer;
 }
 ul {
 padding-inline-start: 0px;
@@ -56,33 +59,33 @@ margin-right: auto;
 cursor: pointer;
 }
 .prev:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .previus{
 cursor: pointer;
 }
 .previus:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .next{
 cursor: pointer;
 }
 .next:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .play{
 display: none;
 cursor: pointer;
 }
 .play:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .pause{
 display: none;
 cursor: pointer;
 }
 .pause:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .repeat-track{
 display: none;
@@ -90,17 +93,17 @@ cursor: pointer;
 color:#ADB5BD;
 }
 .repeat-track:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .branch{
 display: none;
 cursor: pointer;
 }
 .branch:active{
-color: #2BB4E6;
+color: #C34854;
 }
 .code:active{
-color:#2BB4E6;
+color:#C34854;
 }
 .code{
 display: none;
@@ -125,13 +128,14 @@ display: none;
 .volume-slider div { 
   display: inline-block; 
   width: 100%;
+  margin-bottom: 1px;
 }
 .crl{
   color: #2FC5FC;
 display: none;
   position: fixed;
   top: 74%;
-  left: 49%;
+  left: 50.6%;
   margin-top: -50px;
   margin-left: -100px;
 }
