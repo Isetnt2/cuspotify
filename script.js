@@ -1,4 +1,3 @@
-
 // Get the hash of the url
 const hash = window.location.hash
 .substring(1)
@@ -14,12 +13,12 @@ window.location.hash = '';
 
 // Set token
 let _token = hash.access_token;
-
+$.cookie('_token', hash.access_token, { expires: 3600, path: '/' });
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = 'f49138eb3c684fd4af3dfc8f2b0474bb';
-const redirectUri = 'https://isetnt2.github.io/cuspotify/';
+const redirectUri = 'https://isetnt2.github.io/cuspotify/'
 const scopes = [
   'streaming',
   'user-read-birthdate',
@@ -29,15 +28,14 @@ const scopes = [
 ];
 
 // If there is no token, redirect to Spotify authorization
-if (!_token) {
+if ($.cookie('_token') != hash.access_token) {
   window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
 }
-
 // Set up the Web Playback SDK
 window.onSpotifyPlayerAPIReady = () => {
   const player = new Spotify.Player({
     name: 'Cuspotify test client',
-    getOAuthToken: cb => { cb(_token); }
+    getOAuthToken: cb => { cb(_token);}
     });
     var devid = "";
     var serverduration = "";
@@ -57,7 +55,7 @@ window.onSpotifyPlayerAPIReady = () => {
   player.on('playback_error', e => console.error(e));
   	
 player.addListener('ready', ({ device_id }) => {
-   var devid = device_id;
+   devid = device_id;
     console.log('Device ID', devid)
 })
 player.on('player_state_changed', state => {
@@ -81,6 +79,8 @@ player.addListener('player_state_changed', ({
   // Playback status updates
   player.on('player_state_changed', state =>  {
   var artistName = "";
+  var artistUri = "";
+  var artistUrl = "";
 for (var i = 0; i < state.track_window.current_track.artists.length; i++) {
   if (i < state.track_window.current_track.artists.length - 1){
   artistName += state.track_window.current_track.artists[i].name + ", ";
@@ -90,8 +90,15 @@ for (var i = 0; i < state.track_window.current_track.artists.length; i++) {
   }
    else if (state.track_window.current_track.artists.length = 1){
   artistName += state.track_window.current_track.artists[i].name;
+  artistUri = state.track_window.current_track.artists[i].uri.replace(":", "/").replace(":", "/");
+  artistUrl = artistUri.replace("spotify", "https://open.spotify.com");
+  console.log('the artist url is', artistUrl);
       }
-}  
+}
+    if (state.track_window.current_track.artists.length == 1){
+   $('#artists').off('click').on('click', function(){
+      window.open((artistUrl), '_blank');});
+    }
   var songName = state.track_window.current_track.name;
   var artist = state.track_window.current_track.artists;
   var albumCover = state.track_window.current_track.album.images[0].url;  
@@ -152,7 +159,10 @@ else if (state.repeat_mode == 2){
     player.seek(0 * 1000).then(() => {
   console.log('Changed position!');
 });
-});
+}); 
+      $('#songName').off('click').on('click', function(){
+      window.open(('https://open.spotify.com/track/' + songId), '_blank');
+      });
       $('#album3').off('click').on('click', function(){
       window.open(('https://open.spotify.com/track/' + songId), '_blank');
       });
