@@ -1,6 +1,8 @@
 # cuspotify.github.io
 A custom spotify web client.
 
+Currently availbe preview: https://cuspotify.ml
+
 cookies.js is for managing cookies used for the theme.
 theme-changer.js is for controlling the theme and the settings modal.
 script.js is for controlling most things on the page both back- and frontend.
