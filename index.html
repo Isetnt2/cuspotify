@@ -1,1 +1,73 @@
-<!DOCTYPE html><html> <head> <title>Cuspotify</title> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="stylesheet" type="text/css" href="/style.css"> <link rel="stylesheet" type="text/css" href="/dark-theme.css" class="darkTheme"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> <link href="/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css"/> <link rel="stylesheet" href="/font-awesome-animation.css"> <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> </head> <body> <div class="container"> <a class="link"><img src="." alt="" id="album1"></a> <img src="." alt="" id="album2"> <img src="." alt="" id="album3"> </div><p id="songName"></p><p id="artists"></p><i class="mdi mdi-settings mdi-32px settings"></i> <div class=" crl center-inner" id="noselect"> <ul> <i class="fa fa-fw fa-step-backward fa-3x prev"></i><i class="fa fa-fw fa-play fa-3x play"></i> <i class="fa fa-fw fa-pause fa-3x pause"></i> <i class=" fa fa-fw fa-step-forward fa-3x next"></i> <i class="mdi mdi-repeat-off mdi-48px repeat-track"></i> <i class="mdi mdi-repeat mdi-48px repeat-1"></i> <i class="mdi mdi-repeat-once mdi-48px repeat-2"></i> </ul> <div class="ui-slider ui-slider-horizontal pos" id="position-slider"></div><div class="volume-slider"> <i class="mdi mdi-volume-low volume volume-low"></i> <i class="mdi mdi-volume-medium volume volume-medium"></i> <i class="mdi mdi-volume-high volume volume-high"></i> <div class="ui-slider ui-slider-horizontal" id="slider"></div><p id="slidervalue"></p></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> <div id="myModal" class="modal"> <div class="modal-content"> <span class="close">&times;</span> <p>Select theme:</p><div class="toggle-body"> <div class="toggle-btn"></div></div></div></div><a href="#" onclick="document.cookie='cookiebar=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/'; setupCookieBar(); return false;"></a> <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script> <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js" integrity="sha256-PsB+5ZEsBlDx9Fi/GXc1bZmC7wEQzZK4bM/VwNm1L6c=" crossorigin="anonymous"></script> <script src="/cookies.js"></script> <script src="https://sdk.scdn.co/spotify-player.js"></script> <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script> <script src="notification.js"></script> <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?theme=flying&tracking=1&always=1"></script> <script src="theme-changer.js"></script> <script src="/script.js" defer></script> </body> </html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cuspotify</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/dark-theme.css" class="darkTheme">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/font-awesome-animation.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    </head>
+  
+  <body>
+    <div class="container">
+    <a class="link"><img src="." alt="" id="album1"></a>
+        <img src="." alt="" id="album2">
+        <img src="." alt="" id="album3">
+    </div> 
+  <div class="vertical-menu" id="vertical-menu">
+    <div class="close-playlist small" data-toggle="vertical-menu"><span></span></div>
+</div>
+    <button type="button" class="playlistToggle" data-toggle="vertical-menu"><i class="fas fa-bars fa-3x"></i></button>
+  <p id="songName"></p>
+  <p id="artists"></p>
+  <i class="mdi mdi-settings mdi-32px settings"></i>   
+    <div class=" crl center-inner" id="noselect">
+    <ul>
+    <i class="fa fa-fw fa-step-backward fa-3x prev"></i>
+	<i class="fa fa-fw fa-play fa-3x play"></i>
+    	<i class="fa fa-fw fa-pause fa-3x pause"></i>
+    <i class=" fa fa-fw fa-step-forward fa-3x next"></i>
+      <i class="mdi mdi-repeat-off mdi-48px repeat-track"></i>     
+    <i class="mdi mdi-repeat mdi-48px repeat-1"></i>
+      <i class="mdi mdi-repeat-once mdi-48px repeat-2"></i>
+      <!--<i class="fas fa-list-ul playlists"></i> -->
+      </ul>
+      <div class="ui-slider ui-slider-horizontal pos" id="position-slider"></div>
+    <div class="volume-slider">
+      <i class="mdi mdi-volume-low volume volume-low"></i>
+      <i class="mdi mdi-volume-medium volume volume-medium"></i>
+      <i class="mdi mdi-volume-high volume volume-high"></i>
+      <div class="ui-slider ui-slider-horizontal" id="slider"></div>
+       <p id="slidervalue"></p>
+      </div>
+      </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+ <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Select theme:</p>
+        <div class="toggle-body">
+        <div class="toggle-btn"></div>
+      </div>
+    </div>
+  </div>
+    <a href="#" onclick="document.cookie='cookiebar=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/'; setupCookieBar(); return false;"></a>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js" integrity="sha256-PsB+5ZEsBlDx9Fi/GXc1bZmC7wEQzZK4bM/VwNm1L6c=" crossorigin="anonymous"></script>
+    <script src="/cookies.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+    <script src="notification.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?theme=flying&tracking=1&always=1"></script>
+    <script src="theme-changer.js"></script>
+    <script src="/script.js" defer></script>
+  </body>  
+</html>
