@@ -1,3 +1,5 @@
+
+
 // Get the hash of the url
 const hash = window.location.hash
 .substring(1)
@@ -18,7 +20,7 @@ const authEndpoint = 'https://accounts.spotify.com/authorize';
 
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = 'f49138eb3c684fd4af3dfc8f2b0474bb';
-const redirectUri = 'https://isetnt2.github.io/cuspotify/'
+const redirectUri = 'https://cuspotify.glitch.me/';
 const scopes = [
   'streaming',
   'user-read-birthdate',
@@ -48,6 +50,100 @@ window.onSpotifyPlayerAPIReady = () => {
     $('.repeat-2').hide();
     $('.repeat-1').hide();
     $('.previus').hide();
+  var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.spotify.com/v1/me",
+  "method": "GET",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "authorization": "Bearer "+_token,
+  }
+  }
+  $.ajax(settings).done(function (response) {
+console.log(response);
+    var userId = response.id;
+    var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": 'https://api.spotify.com/v1/users/' +userId+ "/playlists?limit=50&offset=0",
+  "method": "GET",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "authorization": "Bearer "+_token,
+  }
+    }
+
+$.ajax(settings).done(function (response) {
+  console.log(response); 
+var listDiv = document.getElementById('vertical-menu');
+var a = "";
+var img = "";
+var p = "";
+var br = "";
+var imgSrc = "";
+var playlistUris = [];
+for (var i = 0; i < response.items.length; ++i) {
+      a = document.createElement('li');
+      p = document.createElement('p');
+      br = document.createElement('br');
+      img = document.createElement('img');
+      if (response.items[i].images.length == 0){
+      imgSrc = ('/missing.png')
+      }
+      else {
+      imgSrc = response.items[i].images[0].url;
+      }
+      $(img).attr({
+    'src': imgSrc,
+    'id': i,
+  });
+  
+    p.innerHTML = response.items[i].name + "     ";  
+  $(p).attr({
+    'id':i,
+    'class': "playlistName",
+});
+    $(a).attr({
+    'id':i,
+    'class': "listChild",
+});
+      listDiv.appendChild(a).appendChild(p).appendChild(br);
+      p.appendChild(img);
+      playlistUris.push(response.items[i].uri);
+}
+        $('.vertical-menu').on('click', 'li', function(){
+       var clickedChild = $(this).attr('id');
+       var listDiv = document.getElementById('vertical-menu');
+       var playlistUri = ""
+      console.log(clickedChild)
+      playlistUri = response.items[clickedChild].uri;
+      console.log(response.items[clickedChild].uri);
+      Array.from(listDiv.parentNode.children).indexOf(clickedChild)
+      console.log(Array.from(listDiv.parentNode.children).indexOf(clickedChild));
+ var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.spotify.com/v1/me/player/play?device_id="+devid,
+  "method": "PUT",
+  "headers": {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "authorization": "Bearer "+_token,
+  },
+  "processData": false,
+  "data": "{\"context_uri\":\"" + playlistUri + "\" "+",\"offset\":{\"position\":1},\"position_ms\":0},"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+  });
+  });
+  });
+   
   // Error handling
   player.on('initialization_error', e => console.error(e));
   player.on('authentication_error', e => console.error(e));
@@ -56,7 +152,7 @@ window.onSpotifyPlayerAPIReady = () => {
   	
 player.addListener('ready', ({ device_id }) => {
    devid = device_id;
-    console.log('Device ID', devid)
+    console.log (device_id);
 })
 player.on('player_state_changed', state => {
 
@@ -67,11 +163,6 @@ player.addListener('player_state_changed', ({
   paused,
   track_window: { current_track, next_tracks }
 }) => {
-  console.log('Currently Playing', current_track);
-  console.log('Position in Song', position);
-  console.log('Duration of Song', duration);
-  console.log('Paused', paused);
-  console.log('Next track', next_tracks[0] );
   var serverduration = duration;
 
 });
@@ -92,7 +183,6 @@ for (var i = 0; i < state.track_window.current_track.artists.length; i++) {
   artistName += state.track_window.current_track.artists[i].name;
   artistUri = state.track_window.current_track.artists[i].uri.replace(":", "/").replace(":", "/");
   artistUrl = artistUri.replace("spotify", "https://open.spotify.com");
-  console.log('the artist url is', artistUrl);
       }
 }
     if (state.track_window.current_track.artists.length == 1){
@@ -120,7 +210,6 @@ var options = {
 $("#easyNotify").easyNotify(options);
  }
   
-   console.log(state)
     $('#info-pic').attr('src', albumCover);
     $('#songName').text(songName);
     $('title').text(songName)
@@ -157,7 +246,6 @@ else if (state.repeat_mode == 2){
   if (state.repeat_mode == 2)
   $('.next').click(function(){
     player.seek(0 * 1000).then(() => {
-  console.log('Changed position!');
 });
 }); 
       $('#songName').off('click').on('click', function(){
@@ -184,16 +272,14 @@ else {
 
   // Ready
   player.on('ready', data => {
-    console.log('Ready with Device ID', data.device_id);
     const deviceId = data.device_id;
     // Play a track using our new device ID
     player(data.device_id);
-    deviceId
-    
+    deviceId;
+    console.log("deviceId is:" + deviceId);
   });
     player.connect().then(success => {
   if (success) {
-    console.log('The Web Playback SDK successfully connected to Spotify!');
   }
   $('.play').show();
   $('.crl').show();
@@ -224,15 +310,10 @@ $('.disconnect').click(function(){
   $('.connect').show();
 });
 $('.play').click(function(){
-	player.resume().then(() => { console.log('Resumed playback!'); 
   });
-});
 $('.pause').click(function(){
-player.pause().then(() => { console.log('Paused playback!');
   });
-});
 $('.next').click(function(){
-	player.nextTrack().then(() => { console.log('Skipped to next track!'); });
 });
     setInterval(function() { 
   player.getCurrentState().then(state => {
@@ -339,7 +420,6 @@ var settings = {
     "authorization": "Bearer "+_token,
   }
 }
-
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
@@ -381,9 +461,12 @@ $(".repeat-2").click(function(){
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
+
   $(".repeat-2").hide();
 $(".repeat-track").show();
-});
+}); 
+
+
   // a key map of allowed keys
 var allowedKeys = {
   37: 'left',
@@ -501,7 +584,7 @@ function draw() {
 
 
 }
-  $(window).keypress(function(e) {
+$(window).keypress(function(e) {
   if (e.keyCode == 0 || e.keyCode == 32) {
 	
 player.togglePlay().then(() =>  {
@@ -509,5 +592,24 @@ player.togglePlay().then(() =>  {
 });
   }
 });
-
+var togglePanel = function () {
+  var e = $('.vertical-menu');
+  var i = $('.playlistToggle')
+  
+  if ( e.hasClass("off" ) &&  i.hasClass("off")) {
+    e.addClass("on").removeClass("off");
+    i.addClass("on").removeClass("off");
+  
+  } else if ( e.hasClass("on") &&  i.hasClass("on")) {
+    e.addClass("off").removeClass("on");
+    i.addClass("off").removeClass("on");
+  } else {
+    e.addClass("on");
+    i.addClass("on");
+  }
+}
+  var shows = $('[data-toggle="vertical-menu"]');
+shows.on('click', function() {
+  togglePanel();
+});
 };

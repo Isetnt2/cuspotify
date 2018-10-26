@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="https://isetnt2.github.io/cuspotify//style.css">
-    <link rel="stylesheet" type="text/css" href="https://isetnt2.github.io/cuspotify//dark-theme.css" class="darkTheme">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/dark-theme.css" class="darkTheme">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/font-awesome-animation.css">
@@ -19,6 +19,10 @@
         <img src="." alt="" id="album2">
         <img src="." alt="" id="album3">
     </div> 
+  <div class="vertical-menu" id="vertical-menu">
+    <div class="close-playlist small" data-toggle="vertical-menu"><span></span></div>
+</div>
+    <button type="button" class="playlistToggle" data-toggle="vertical-menu"><i class="fas fa-bars fa-3x"></i></button>
   <p id="songName"></p>
   <p id="artists"></p>
   <i class="mdi mdi-settings mdi-32px settings"></i>   
@@ -33,7 +37,6 @@
       <i class="mdi mdi-repeat-once mdi-48px repeat-2"></i>
       <!--<i class="fas fa-list-ul playlists"></i> -->
       </ul>
-          <p id="duration"></p><p id="position-value"></p>
       <div class="ui-slider ui-slider-horizontal pos" id="position-slider"></div>
     <div class="volume-slider">
       <i class="mdi mdi-volume-low volume volume-low"></i>
@@ -62,8 +65,7 @@
     <script src="https://isetnt2.github.io/cuspotify/cookies.js"></script>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script src="https://isetnt2.github.io/cuspotify/notification.js"></script>
+    <script src="notification.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?theme=flying&tracking=1&always=1"></script>
     <script src="https://isetnt2.github.io/cuspotify/theme-changer.js"></script>
     <script src="https://isetnt2.github.io/cuspotify/script.js" defer></script>
