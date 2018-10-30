@@ -39,6 +39,12 @@ cursor: pointer;
 }
 p#songName {
     padding-block-start: 22em !important;
+	width: 50%;
+	margin-left: 25%;
+}
+p#artists{
+width: 50%;
+margin-left: 25%;
 }
 ul {
 padding-inline-start: 0px;
